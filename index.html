@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Gimnasio</div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="menu">
+                <li><a href="#home">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#clases">Clases</a>
+                    <ul class="submenu">
+                        <li><a href="#musculacion">Musculación</a></li>
+                        <li><a href="#crossfit">CrossFit</a></li>
+                        <li><a href="#yoga">Yoga</a></li>
+                        <li><a href="#spinning">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="#entrenadores">Entrenadores</a></li>
+                <li><a href="#precios">Precios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <video autoplay muted loop playsinline>
+              <source src="video/gym-video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay">
+                <h1>Entrena con Nosotros</h1>
+                <p class="animated-text">Alcanza tus metas</p>
+            </div>
+        </section>
+
+        <section id="featured-classes">
+            <h2>Clases Destacadas</h2>
+            <div class="class-cards">
+                <div class="card">
+                    <img src="img/musculacion.jpg" alt="Musculación">
+                    <h3>Musculación</h3>
+                    <p>Descripción breve de la clase.</p>
+                </div>
+                <div class="card">
+                    <img src="img/crossfit.jpg" alt="CrossFit">
+                    <h3>CrossFit</h3>
+                    <p>Descripción breve de la clase.</p>
+                </div>
+                <div class="card">
+                  <img src="img/yoga.jpg" alt="Yoga">
+                  <h3>Yoga</h3>
+                  <p>Descripción breve de la clase.</p>
+              </div>
+               <div class="card">
+                  <img src="img/spinning.jpg" alt="Spinning">
+                  <h3>Spinning</h3>
+                  <p>Descripción breve de la clase.</p>
+              </div>
+            </div>
+        </section>
+
+        <section id="counter">
+          <div class="counter-container">
+              <div class="counter-item">
+                  <div class="counter-number" data-target="500">0</div>
+                  <div class="counter-label">Socios Satisfechos</div>
+              </div>
+          </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>Testimonios</h2>
+            <div class="carousel">
+                <input type="radio" name="carousel" id="testimonial-1" checked>
+                <input type="radio" name="carousel" id="testimonial-2">
+                <input type="radio" name="carousel" id="testimonial-3">
+
+                <div class="slides">
+                  <div class="slide"><p>"Excelente gimnasio!"</p><p>- Cliente 1</p></div>
+                  <div class="slide"><p>"Mejore mi salud!"</p><p>- Cliente 2</p></div>
+                  <div class="slide"><p>"Muy buenos entrenadores!"</p><p>- Cliente 3</p></div>
+                </div>
+                
+                <div class="controls">
+                  <label for="testimonial-1"></label>
+                  <label for="testimonial-2"></label>
+                  <label for="testimonial-3"></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Classes Page structure -->
+        <section id="clases-page" style="display: none;">
+          <h2>Nuestras Clases</h2>
+          <div class="filters">
+            <input type="radio" id="all" name="filter" value="all" checked>
+            <label for="all">Todas</label>
+            <input type="radio" id="musculacion-filter" name="filter" value="musculacion">
+            <label for="musculacion-filter">Musculación</label>
+            <input type="radio" id="crossfit-filter" name="filter" value="crossfit">
+            <label for="crossfit-filter">CrossFit</label>
+            <input type="radio" id="yoga-filter" name="filter" value="yoga">
+            <label for="yoga-filter">Yoga</label>
+            <input type="radio" id="spinning-filter" name="filter" value="spinning">
+            <label for="spinning-filter">Spinning</label>
+          </div>
+          
+          <div class="masonry-grid">
+            <div class="grid-item musculacion"><img src="img/musculacion-1.jpg" alt="Musculación 1"></div>
+            <div class="grid-item crossfit"><img src="img/crossfit-1.jpg" alt="CrossFit 1"></div>
+            <div class="grid-item yoga"><img src="img/yoga-1.jpg" alt="Yoga 1"></div>
+            <div class="grid-item spinning"><img src="img/spinning-1.jpg" alt="Spinning 1"></div>
+            <div class="grid-item musculacion"><img src="img/musculacion-2.jpg" alt="Musculación 2"></div>
+            <div class="grid-item crossfit"><img src="img/crossfit-2.jpg" alt="CrossFit 2"></div>
+            <div class="grid-item yoga"><img src="img/yoga-2.jpg" alt="Yoga 2"></div>
+            <div class="grid-item spinning"><img src="img/spinning-2.jpg" alt="Spinning 2"></div>
+          </div>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+                <th>Sábado</th>
+                <th>Domingo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>8:00 - 9:00</td>
+                <td>Musculación</td>
+                <td>Yoga</td>
+                <td>CrossFit</td>
+                <td>Musculación</td>
+                <td>Yoga</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>9:00 - 10:00</td>
+                <td>CrossFit</td>
+                <td>Musculación</td>
+                <td>Spinning</td>
+                <td>CrossFit</td>
+                <td>Musculación</td>
+                <td>Yoga</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="newsletter">
+            <h3>Suscríbete a nuestro Newsletter</h3>
+            <form>
+                <input type="email" placeholder="Tu email" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+        <div class="social-media">
+            <h3>Síguenos</h3>
+            <ul>
+                <li><a href="#"><img src="img/facebook.svg" alt="Facebook"></a></li>
+                <li><a href="#"><img src="img/instagram.svg" alt="Instagram"></a></li>
+                <li><a href="#"><img src="img/twitter.svg" alt="Twitter"></a></li>
+            </ul>
+        </div>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10425.12357971988!2d-58.43388026391876!3d-34.5908454600951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca600336592f%3A0x191a5017772f68d2!2sRecoleta%2C%20CABA!5e0!3m2!1ses-419!2sar!4v1702137955980!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
