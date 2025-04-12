@@ -1,116 +1,202 @@
-:root {
-    --primary: #e63946;
-    --dark: #1d1d1d;
-    --light: #f1faee;
-    --accent: #457b9d;
+.titulo-pagina {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--header-bg); /* Use theme variable */
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--card-border);
+}
+.titulo-pagina h2 {
+  color: var(--primary-color); /* Use theme variable */
+  margin-bottom: 0.5rem;
+}
+.titulo-pagina p {
+  color: var(--secondary-color); /* Use theme variable */
+  font-size: 1.1rem;
+}
+
+/* --- Grid Container --- */
+.grid-entrenadores {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+padding: 0 2rem 2rem 10rem; /* Added padding */
+}
+
+/* --- Tarjeta Flip --- */
+.card {
+perspective: 1000px;
+min-height: 400px; /* Ensure cards have enough height for content */
+}
+
+.card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+transform-style: preserve-3d;
+transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1); /* Smoother transition */
+}
+
+.card:hover .card-inner {
+transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+position: absolute;
+backface-visibility: hidden; /* Essential for flip effect */
+width: 100%;
+height: 100%; /* Ensure faces cover the inner div */
+padding: 1.5rem; /* Increased padding */
+border-radius: 10px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+background: var(--card-bg); /* Use theme variable for background */
+color: var(--text-color); /* Use theme variable for text */
+text-align: center;
+box-sizing: border-box; /* Include padding in width/height */
+display: flex; /* Use flexbox for better content alignment */
+flex-direction: column; /* Stack content vertically */
+justify-content: center; /* Center content vertically */
+overflow: hidden; /* Prevent content overflow */
+}
+
+.card-front {
+z-index: 2;
+align-items: center; /* Center items horizontally */
+}
+
+.card-front img {
+width: 150px; /* Fixed width for profile picture */
+height: 150px; /* Fixed height */
+border-radius: 50%; /* Circular image */
+object-fit: cover; /* Cover the area, cropping if needed */
+margin-bottom: 1rem;
+border: 3px solid var(--primary-color); /* Add border using theme color */
+}
+
+.card-front h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  color: var(--primary-color); /* Use theme color */
+}
+.card-front p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--secondary-color); /* Use theme color */
+}
+
+.card-back {
+transform: rotateY(180deg);
+justify-content: space-around; /* Space out content */
+}
+
+.card-back h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+.card-back p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* --- Barras de habilidades --- */
+.habilidades {
+  width: 100%;
+  margin-bottom: 1rem; /* Space before rating */
+}
+.habilidades label {
+font-weight: bold;
+display: block;
+margin-top: 0.5rem;
+margin-bottom: 0.2rem; /* Space between label and bar */
+font-size: 0.85rem;
+text-align: left; /* Align labels left */
+}
+
+.barra {
+background: var(--card-border); /* Use theme variable for background */
+border-radius: 10px;
+height: 10px;
+overflow: hidden;
+margin-bottom: 0.8rem; /* Space between bars */
+}
+
+.nivel {
+height: 100%;
+background: var(--primary-color); /* Use theme variable for fill */
+width: var(--nivel, 0%); /* Use CSS variable, default to 0 */
+border-radius: 10px; /* Match parent radius */
+animation: crecer 1.5s 0.5s ease-out forwards; /* Delay animation slightly */
+transform-origin: left; /* Animate width from left */
+}
+
+/* Animation for skill bars */
+@keyframes crecer {
+from {
+  transform: scaleX(0);
+}
+to {
+  transform: scaleX(1);
+}
+}
+
+/* --- Rating con Estrellas --- */
+.rating {
+font-size: 1.5rem; /* Size of stars */
+color: var(--secondary-color); /* Default color for empty stars (or use ☆) */
+margin-top: 1rem;
+line-height: 1; /* Prevent extra spacing */
+}
+
+.rating .star {
+  display: inline-block; /* Allow transform and animation */
+  cursor: default; /* Indicate non-interactive */
+  transition: transform 0.2s ease, color 0.3s ease;
+  margin: 0 1px; /* Tiny space between stars */
+  opacity: 0; /* Start hidden for animation */
+  transform: scale(0.5);
+  animation: appear 0.5s cubic-bezier(0.5, 0, 0.5, 1.5) forwards; /* Bounce-in effect */
+  /* Apply animation delay based on star index */
+  animation-delay: calc(0.8s + var(--i) * 0.1s); /* Staggered appearance after flip */
+}
+
+.rating .star.filled {
+color: gold; /* Color for filled stars */
+}
+
+/* Animation for stars appearing */
+@keyframes appear {
+  to {
+      opacity: 1;
+      transform: scale(1);
   }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    background: var(--light);
-    color: var(--dark);
-  }
-  
-  header {
-    background: var(--primary);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-  }
-  
+}
+
+/* Optional: Subtle pulse/scale on card hover for stars */
+.card:hover .rating .star {
+ /* Example: transform: scale(1.05); */
+ /* Add other hover effects if desired */
+}
+
+
+/* --- Responsivo --- */
+@media (max-width: 768px) {
   .grid-entrenadores {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+      padding: 0 1rem 1rem 1rem; /* Adjust padding */
+      gap: 1.5rem;
   }
-  
-  /* Tarjeta Flip */
   .card {
-    perspective: 1000px;
+      min-height: 380px; /* Adjust min height */
   }
-  
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.8s;
-  }
-  
-  .card:hover .card-inner {
-    transform: rotateY(180deg);
-  }
-  
   .card-front, .card-back {
-    position: absolute;
-    backface-visibility: hidden;
-    width: 100%;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    background: white;
-    text-align: center;
+      padding: 1rem;
   }
-  
-  .card-front {
-    z-index: 2;
-  }
-  
   .card-front img {
-    width: 100%;
-    border-radius: 10px;
-    height: 220px;
-    object-fit: cover;
+      width: 120px;
+      height: 120px;
   }
-  
-  .card-back {
-    transform: rotateY(180deg);
-  }
-  
-  /* Barras de habilidades */
-  .habilidades label {
-    font-weight: bold;
-    display: block;
-    margin-top: 0.5rem;
-  }
-  
-  .barra {
-    background: #ccc;
-    border-radius: 10px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-  
-  .nivel {
-    height: 100%;
-    background: var(--accent);
-    width: var(--nivel);
-    animation: crecer 2s ease-out;
-  }
-  
-  @keyframes crecer {
-    from {
-      width: 0;
-    }
-    to {
-      width: var(--nivel);
-    }
-  }
-  
-  /* Rating */
-  .rating {
-    font-size: 1.5rem;
-    color: gold;
-    margin-top: 1rem;
-  }
-  
-  /* Responsivo */
-  @media (max-width: 600px) {
-    .card-inner {
-      height: auto;
-    }
-  }
-  
+}
+
+@media (max-width: 600px) {
+/* No specific changes needed based on original, but could adjust grid further */
+}
