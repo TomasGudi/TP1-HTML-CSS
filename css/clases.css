@@ -1,0 +1,216 @@
+.titulo-pagina {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--header-bg); 
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--card-border);
+}
+.titulo-pagina h2 {
+  color: var(--primary-color); 
+  margin-bottom: 0.5rem;
+}
+.titulo-pagina p {
+  color: var(--secondary-color); 
+  font-size: 1.1rem;
+}
+
+
+.filtro-input {
+  display: none;
+}
+.filtros {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 1rem;
+margin: 0 2rem 2rem 2rem; 
+}
+
+.filtros label {
+background-color: var(--card-bg); /* Use theme variable */
+color: var(--text-color); /* Use theme variable */
+border: 1px solid var(--card-border); /* Use theme variable */
+padding: 0.6rem 1.2rem;
+border-radius: 20px;
+cursor: pointer;
+transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+font-weight: 500;
+}
+
+.filtros label:hover {
+background-color: var(--secondary-color); /* Use theme variable */
+color: var(--bg-color); /* Use theme variable */
+border-color: var(--secondary-color);
+}
+
+.filtros input[type="radio"]:checked + label {
+background-color: var(--primary-color); /* Use theme variable */
+color: var(--button-text); /* Use theme variable */
+border-color: var(--primary-color);
+}
+
+/* --- Galería tipo "Masonry" con Grid --- */
+.galeria-clases {
+display: grid;
+/* Creates responsive columns: minimum 280px, fills available space */
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 1.5rem; /* Increased gap */
+padding: 0 2rem 2rem 2rem; /* Consistent padding */
+/* Aligns items to the start of their grid cell, helping with varying heights */
+align-items: start;
+}
+
+.clase {
+position: relative; /* Needed for absolute positioning of overlay */
+overflow: hidden; /* Hides parts of image/overlay outside the card */
+border-radius: 8px; /* Softer corners */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+background-color: var(--card-bg); /* Ensure background for card */
+transition: box-shadow 0.3s ease;
+/* Helps prevent items breaking across columns/rows in some layouts */
+break-inside: avoid;
+}
+
+.clase:hover {
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.clase img {
+display: block; /* Removes extra space below image */
+width: 100%;
+/* Height is set inline in HTML for demo, or could be dynamic */
+height: auto; /* Let aspect ratio determine height if not set inline */
+object-fit: cover; /* Ensures image covers the area, might crop */
+transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth zoom */
+}
+
+/* Zoom effect on hover */
+.clase:hover img {
+transform: scale(1.08);
+}
+
+/* Overlay Info */
+.clase .info {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%); /* Gradient overlay */
+color: #ffffff; /* White text on overlay */
+padding: 2rem 1rem 1rem 1rem; /* More padding at bottom */
+box-sizing: border-box;
+/* Start fully transparent and slightly down */
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Show overlay on hover */
+.clase:hover .info {
+opacity: 1;
+transform: translateY(0);
+}
+
+.clase .info h3 {
+margin: 0 0 0.3rem 0;
+font-size: 1.3rem;
+font-weight: bold;
+}
+
+.clase .info p {
+margin: 0;
+font-size: 0.95rem;
+line-height: 1.4;
+}
+
+#filtro-crossfit:checked ~ .galeria-clases .clase:not(.crossfit),
+#filtro-yoga:checked ~ .galeria-clases .clase:not(.yoga),
+#filtro-spinning:checked ~ .galeria-clases .clase:not(.spinning),
+#filtro-musculacion:checked ~ .galeria-clases .clase:not(.musculacion) {
+ animation: fadeOut 0.5s forwards; 
+ display: none; 
+}
+
+/* Optional fade out animation */
+@keyframes fadeOut {
+from { opacity: 1; transform: scale(1); }
+to { opacity: 0; transform: scale(0.9); height: 0; padding: 0; margin: 0; border: 0; }
+}
+
+
+/* --- Tabla de Horarios Responsiva --- */
+.horarios {
+padding: 2rem;
+margin-top: 2rem;
+background-color: var(--card-bg); /* Use theme variable */
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.horarios h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color); /* Use theme variable */
+}
+
+.tabla-scroll {
+overflow-x: auto; /* Enables horizontal scrolling on small screens */
+-webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+}
+
+table {
+width: 100%;
+min-width: 600px; /* Minimum width before scrolling starts */
+border-collapse: collapse;
+background-color: var(--bg-color); /* Use theme variable */
+color: var(--text-color); /* Use theme variable */
+border-radius: 5px; /* Apply radius to wrapper if needed */
+overflow: hidden; /* Clip content to border-radius */
+border: 1px solid var(--card-border); /* Add border around table */
+}
+
+thead {
+background-color: var(--secondary-color); /* Use theme variable */
+color: var(--bg-color); /* Use theme variable */
+}
+
+th, td {
+padding: 0.8rem 1rem; /* Adjusted padding */
+text-align: center;
+border: 1px solid var(--card-border); /* Use theme variable for borders */
+font-size: 0.95rem;
+white-space: nowrap; /* Prevent text wrapping in cells */
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--card-bg); /* Subtle striping, adjust if needed */
+}
+tbody tr:nth-child(odd) {
+  background-color: var(--bg-color); /* Match body background */
+}
+
+tbody td {
+  font-weight: 500;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+th, td {
+  font-size: 0.85rem;
+  padding: 0.6rem 0.8rem;
+}
+.galeria-clases {
+    padding: 0 1rem 1rem 1rem; /* Less padding on mobile */
+    gap: 1rem;
+}
+.filtros {
+    margin: 0 1rem 1.5rem 1rem;
+    gap: 0.5rem;
+}
+ .filtros label {
+     padding: 0.5rem 1rem;
+ }
+ .horarios {
+     padding: 1rem;
+ }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gimnasio PowerFit</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contacto.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="mega-menu">
+      <h1 class="logo">PowerFit</h1>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">☰</label>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clases.html">Clases</a></li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contacto">
+    <h2>Formulario de Contacto</h2>
+  
+    <form id="contacto" class="form-contacto">
+      <div class="full">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required minlength="3" />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div>
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{8,15}" required />
+      </div>
+      <div class="full">
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required minlength="10"></textarea>
+      </div>
+      <div class="full" style="text-align:center;">
+        <div class="spinner" id="spinner"></div>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+
+  <footer>
+    <div class="newsletter">
+      <h3>Suscribite al newsletter</h3>
+      <form  >
+        <input type="email" placeholder="Tu email" required>
+        <button type="button" class="button">Suscribirme</button>
+      </form>
+    </div>
+
+    <div class="redes">
+        <a href="#"><img src="assets/icons/Facebook.svg" alt="Facebook"></a>
+        <a href="#"><img src="assets/icons/Instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="assets/icons/Twitter.svg" alt="Twitter"></a>
+      </div>
+
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps/embed?..."style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </footer>
+
+</body>
+</html>

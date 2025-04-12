@@ -1,0 +1,392 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --header-bg: #f8f9fa;
+  --footer-bg: #343a40;
+  --footer-text: #f8f9fa;
+  --card-bg: #ffffff;
+  --card-border: #dee2e6;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+  --hero-overlay-bg: rgba(0, 0, 0, 0.5);
+  --hero-text: #ffffff;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+  --icon-filter: invert(0%);
+  --toggle-button-bg: #eee;
+  --toggle-button-border: #ccc;
+  --toggle-button-text: #333;
+
+  --transition-speed: 0.3s;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #4dabf7;
+  --secondary-color: #adb5bd;
+  --header-bg: #1f1f1f;
+  --footer-bg: #1c1c1c;
+  --footer-text: #adb5bd;
+  --card-bg: #1e1e1e;
+  --card-border: #444444;
+  --button-bg: #4dabf7;
+  --button-text: #121212;
+  --hero-overlay-bg: rgba(0, 0, 0, 0.7);
+  --hero-text: #f0f0f0;
+  --link-color: #4dabf7;
+  --link-hover-color: #8ccbff;
+  --icon-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  --toggle-button-bg: #333;
+  --toggle-button-border: #555;
+  --toggle-button-text: #e0e0e0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  margin: 0;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed) ease;
+  position: relative;
+  /* Needed for absolute positioning of toggle button */
+}
+
+.dark-mode-toggle {
+  position: absolute;
+  top: 7px;
+  left: 165px;
+  background-color: var(--toggle-button-bg);
+  color: var(--toggle-button-text);
+  border: 1px solid var(--toggle-button-border);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 1rem;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+  z-index: 1001;
+  /* Ensure it's above other header elements if needed */
+}
+
+
+.logo {
+  color: var(--primary-color);
+  margin: 0 20px;
+  font-size: 1.8em;
+}
+
+.mega-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  flex-wrap: wrap;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.menu li {
+  margin-left: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--link-color);
+  font-weight: bold;
+  transition: color var(--transition-speed) ease;
+}
+
+.menu a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Mobile Menu Styles (Keep existing, ensure colors use variables if needed) */
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  /* Hide hamburger by default */
+  font-size: 2em;
+  cursor: pointer;
+  color: var(--text-color);
+  /* Use variable */
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--header-bg);
+    /* Use variable */
+    position: absolute;
+    top: 60px;
+    /* Adjust based on header height */
+    left: 0;
+    z-index: 1000;
+    border-top: 1px solid var(--card-border);
+    /* Use variable */
+  }
+
+  .menu li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .menu-icon {
+    display: block;
+    /* Show hamburger on mobile */
+    margin-right: 15px;
+    /* Add some space */
+  }
+
+  #menu-toggle:checked~.menu {
+    display: flex;
+  }
+
+  .dark-mode-toggle {
+    /* Adjust position slightly for mobile if needed */
+    top: 12px;
+    right: 60px;
+    /* Make space for hamburger */
+  }
+}
+
+
+.hero {
+  position: relative;
+  height: 70vh;
+  /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--hero-overlay-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.hero-title {
+  color: var(--hero-text);
+  font-size: 2.5em;
+  max-width: 80%;
+}
+
+section {
+  padding: 40px 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.clases-destacadas .cards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 300px;
+  /* Adjust width as needed */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  /* Fixed height for images */
+  object-fit: cover;
+  /* Ensure images cover the area */
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.contador {
+  background-color: var(--secondary-color);
+  /* Use a secondary color */
+  color: var(--bg-color);
+  /* Use inverse text color */
+  text-align: center;
+  padding: 30px 20px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.contador-item .numero {
+  font-size: 2.5em;
+  font-weight: bold;
+  display: block;
+}
+
+.testimonios {
+  background-color: var(--bg-color);
+  /* Match body background */
+}
+
+.carrusel {
+  /* Basic carousel styling - add JS later if needed for functionality */
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.slide {
+  display: none;
+  /* Hide all slides by default */
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: var(--card-bg);
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.slide.active {
+  display: block;
+  /* Show active slide */
+}
+
+.slide p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.slide strong {
+  color: var(--secondary-color);
+}
+
+
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 40px 20px;
+  text-align: center;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.newsletter h3 {
+  margin-bottom: 15px;
+}
+
+.newsletter form {
+  margin-bottom: 20px;
+}
+
+.newsletter input[type="email"] {
+  padding: 10px;
+  margin-right: 5px;
+  border: 1px solid var(--card-border);
+  /* Use variable */
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  /* Use variable */
+  color: var(--text-color);
+  /* Use variable */
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.button,
+button[type="button"] {
+  padding: 10px 15px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.button:hover,
+button[type="button"]:hover {
+  opacity: 0.9;
+}
+
+.redes {
+  margin-bottom: 20px;
+}
+
+.redes a {
+  margin: 0 10px;
+  display: inline-block;
+  /* Ensure proper spacing and filter application */
+}
+
+.redes img {
+  width: 30px;
+  /* Adjust icon size */
+  height: 30px;
+  filter: var(--icon-filter);
+  /* Apply filter based on mode */
+  transition: filter var(--transition-speed) ease;
+}
+
+.mapa iframe {
+  width: 100%;
+  max-width: 600px;
+  /* Limit map width */
+  height: 300px;
+  border: 0;
+  border-radius: 5px;
+}
+
+/* Ensure video text fallback uses correct color */
+.hero-video {
+  color: var(--text-color);
+}

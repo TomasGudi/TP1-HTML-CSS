@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clases | PowerFit</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clases.css" />
+</head>
+<body>
+
+    <header>
+        <nav class="mega-menu">
+          <h1 class="logo">PowerFit</h1>
+          <input type="checkbox" id="menu-toggle" />
+          <label for="menu-toggle" class="menu-icon">☰</label>
+          <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="clases.html">Clases</a></li>
+            <li><a href="entrenadores.html">Entrenadores</a></li>
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+          <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="titulo-pagina">
+            <h2>Nuestras Clases</h2>
+            <p>Encontrá la actividad perfecta para vos.</p>
+        </section>
+    
+        <input type="radio" name="filtro-clase" id="filtro-todos" class="filtro-input" checked>
+        <input type="radio" name="filtro-clase" id="filtro-crossfit" class="filtro-input">
+        <input type="radio" name="filtro-clase" id="filtro-yoga" class="filtro-input">
+        <input type="radio" name="filtro-clase" id="filtro-spinning" class="filtro-input">
+        <input type="radio" name="filtro-clase" id="filtro-musculacion" class="filtro-input">
+    
+        <section class="filtros">
+          <label for="filtro-todos">Todas</label>
+          <label for="filtro-crossfit">CrossFit</label>
+          <label for="filtro-yoga">Yoga</label>
+          <label for="filtro-spinning">Spinning</label>
+          <label for="filtro-musculacion">Musculación</label>
+        </section>
+    
+        <section class="galeria-clases">
+          <div class="clase yoga">
+            <img src="assets/yoga.jpg" alt="Clase de Yoga" style="height: 300px;">
+            <div class="info">
+              <h3>Yoga Flow</h3>
+              <p>Conectá cuerpo y mente.</p>
+            </div>
+          </div>
+          <div class="clase crossfit">
+            <img src="assets/crossfit_37303.webp" alt="Clase de CrossFit" style="height: 450px;">
+            <div class="info">
+              <h3>CrossFit WOD</h3>
+              <p>Desafía tus límites.</p>
+            </div>
+          </div>
+          <div class="clase spinning">
+            <img src="assets/Spinning.jpg" alt="Clase de Spinning" style="height: 350px;">
+            <div class="info">
+              <h3>Spinning Energy</h3>
+              <p>Pedaleá al ritmo de la música.</p>
+            </div>
+          </div>
+          <div class="clase musculacion">
+            <img src="assets/musc1.jpg" alt="Clase de Musculación" style="height: 400px;">
+            <div class="info">
+              <h3>Entrenamiento de Fuerza</h3>
+              <p>Construí masa muscular.</p>
+            </div>
+          </div>
+           <div class="clase yoga">
+            <img src="assets/yoga2.jpg" alt="Clase de Yoga Restaurativo" style="height: 380px;">
+            <div class="info">
+              <h3>Yoga Restaurativo</h3>
+              <p>Relajación profunda.</p>
+            </div>
+          </div>
+           <div class="clase crossfit">
+            <img src="assets/crossfit_37303.webp" alt="Clase de CrossFit Endurance" style="height: 320px;">
+            <div class="info">
+              <h3>CrossFit Endurance</h3>
+              <p>Mejorá tu resistencia.</p>
+            </div>
+          </div>
+           <div class="clase spinning">
+            <img src="assets/AIRFRO_PSYCLE_V2s-14.webp" alt="Clase de Spinning Climb" style="height: 420px;">
+            <div class="info">
+              <h3>Spinning Climb</h3>
+              <p>Simulación de montaña.</p>
+            </div>
+          </div>
+           <div class="clase musculacion">
+            <img src="assets/musc2.jpg" alt="Clase de Musculación Funcional" style="height: 360px;">
+            <div class="info">
+              <h3>Musculación Funcional</h3>
+              <p>Movimientos para la vida diaria.</p>
+            </div>
+          </div>
+        </section>
+    
+        <section class="horarios">
+          <h2>Horarios Semanales</h2>
+          <div class="tabla-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>Lunes</th>
+                  <th>Martes</th>
+                  <th>Miércoles</th>
+                  <th>Jueves</th>
+                  <th>Viernes</th>
+                  <th>Sábado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>08:00 - 09:00</td>
+                  <td>Yoga Flow</td>
+                  <td>Spinning Energy</td>
+                  <td>Yoga Flow</td>
+                  <td>Spinning Energy</td>
+                  <td>Yoga Flow</td>
+                  <td>CrossFit WOD</td>
+                </tr>
+                <tr>
+                  <td>09:00 - 10:00</td>
+                  <td>Musculación</td>
+                  <td>CrossFit WOD</td>
+                  <td>Musculación</td>
+                  <td>CrossFit WOD</td>
+                  <td>Musculación</td>
+                  <td>Spinning Climb</td>
+                </tr>
+                <tr>
+                  <td>17:00 - 18:00</td>
+                  <td>Spinning Climb</td>
+                  <td>Yoga Restaurativo</td>
+                  <td>Spinning Climb</td>
+                  <td>Yoga Restaurativo</td>
+                  <td>Spinning Climb</td>
+                  <td>Musculación Funcional</td>
+                </tr>
+                <tr>
+                  <td>18:00 - 19:00</td>
+                  <td>CrossFit Endurance</td>
+                  <td>Musculación Funcional</td>
+                  <td>CrossFit Endurance</td>
+                  <td>Musculación Funcional</td>
+                  <td>CrossFit Endurance</td>
+                  <td>Yoga Flow</td>
+                </tr>
+                 <tr>
+                  <td>19:00 - 20:00</td>
+                  <td>Yoga Flow</td>
+                  <td>Spinning Energy</td>
+                  <td>Yoga Flow</td>
+                  <td>Spinning Energy</td>
+                  <td>Yoga Flow</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="newsletter">
+          <h3>Suscribite al newsletter</h3>
+          <form>
+            <input type="email" placeholder="Tu email" required>
+            <button type="button" class="button">Suscribirme</button>
+          </form>
+        </div>
+    
+        <div class="redes">
+            <a href="#"><img src="assets/Facebook_logo_(square).png" alt="Facebook"></a>
+            <a href="#"><img src="assets/logo-instagram.png" alt="Instagram"></a>
+            <a href="#"><img src="assets/Logo_of_Twitter.png" alt="Twitter"></a>
+          </div>
+    
+        <div class="mapa">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322839!2d106.8195613507848!3d-6.194741395509438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356280477!2sJakarta!5e0!3m2!1sen!2sid!4v1620385288815!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </footer>
+    
+      <script src="js/dark-mode.js" defer></script>
+
+</body>
+</html>
