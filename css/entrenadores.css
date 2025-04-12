@@ -172,13 +172,6 @@ color: gold; /* Color for filled stars */
   }
 }
 
-/* Optional: Subtle pulse/scale on card hover for stars */
-.card:hover .rating .star {
- /* Example: transform: scale(1.05); */
- /* Add other hover effects if desired */
-}
-
-
 /* --- Responsivo --- */
 @media (max-width: 768px) {
   .grid-entrenadores {

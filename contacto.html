@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gimnasio PowerFit</title>
+  <title>Contacto | PowerFit</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/contacto.css" />
 </head>
@@ -20,55 +20,62 @@
         <li><a href="entrenadores.html">Entrenadores</a></li>
         <li><a href="precios.html">Precios</a></li>
         <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="blog.html">Blog</a></li>
       </ul>
+      <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
     </nav>
   </header>
 
   <section class="contacto">
     <h2>Formulario de Contacto</h2>
-  
-    <form id="contacto" class="form-contacto">
+
+    <!-- action="#" significa enviar a la misma página (recarga) -->
+    <!-- Si quisieras intentar el :target, podrías poner action="#confirmationModal" -->
+    <!-- pero eso impediría el envío real de datos a un servidor -->
+    <form id="contactoForm" class="form-contacto" action="#" method="POST"> <!-- Añadido method POST como ejemplo -->
       <div class="full">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required minlength="3" />
+        <input type="text" id="nombre" name="nombre" required minlength="3" placeholder="Tu nombre completo"/>
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com"/>
       </div>
       <div>
         <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{8,15}" required />
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{8,15}" required placeholder="Ej: 1123456789 (8-15 dígitos)"/>
       </div>
       <div class="full">
         <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" required minlength="10"></textarea>
+        <textarea id="mensaje" name="mensaje" required minlength="10" placeholder="Escribe tu consulta aquí..." rows="4"></textarea>
       </div>
-      <div class="full" style="text-align:center;">
-        <div class="spinner" id="spinner"></div>
+      <div class="full submit-container"> 
+        <button type="submit">Enviar Mensaje</button>
       </div>
-      <button type="submit">Enviar</button>
     </form>
+  </section>
 
-  <footer>
-    <div class="newsletter">
-      <h3>Suscribite al newsletter</h3>
-      <form  >
-        <input type="email" placeholder="Tu email" required>
-        <button type="button" class="button">Suscribirme</button>
-      </form>
-    </div>
-
-    <div class="redes">
-        <a href="#"><img src="assets/icons/Facebook.svg" alt="Facebook"></a>
-        <a href="#"><img src="assets/icons/Instagram.svg" alt="Instagram"></a>
-        <a href="#"><img src="assets/icons/Twitter.svg" alt="Twitter"></a>
+    <footer>
+      <div class="newsletter">
+        <h3>Suscribite al newsletter</h3>
+        <form>
+          <input type="email" placeholder="Tu email" required>
+          <button type="button" class="button">Suscribirme</button>
+        </form>
       </div>
-
-    <div class="mapa">
-      <iframe src="https://www.google.com/maps/embed?..."style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </footer>
+  
+      <div class="redes">
+          <a href="#"><img src="assets/Facebook_logo_(square).png" alt="Facebook"></a>
+          <a href="#"><img src="assets/logo-instagram.png" alt="Instagram"></a>
+          <a href="#"><img src="assets/Logo_of_Twitter.png" alt="Twitter"></a>
+        </div>
+  
+      <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322839!2d106.8195613507848!3d-6.194741395509438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356280477!2sJakarta!5e0!3m2!1sen!2sid!4v1620385288815!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </footer>
+  
+    <script src="js/dark-mode.js" defer></script>
 
 </body>
 </html>

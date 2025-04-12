@@ -1,0 +1,434 @@
+/* ============================================= */
+/*            css/blog.css                     */
+/* Estilos específicos para blog.html          */
+/* Asume que style.css maneja estilos globales */
+/* ============================================= */
+
+/* --- Contenedor Principal --- */
+.blog-container {
+  max-width: 1200px; /* Ancho máximo del contenido del blog */
+  margin: 0 auto; /* Centrado */
+  padding: 20px;
+}
+
+.blog-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+/* --- Controles de Filtro (CSS Only) --- */
+.filter-controls {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.filter-label {
+  margin-right: 1rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+/* Oculta los radio buttons reales */
+.filter-controls input[type="radio"] {
+  display: none;
+}
+
+/* Estilo de las etiquetas como tags/botones */
+.filter-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  background-color: var(--bg-color); /* Fondo base */
+  color: var(--secondary-color);
+  border: 1px solid var(--card-border);
+  border-radius: 20px; /* Bordes redondeados tipo tag */
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  font-size: 0.9rem;
+}
+
+/* Estilo del tag al pasar el cursor */
+.filter-tag:hover {
+  background-color: var(--secondary-color);
+  color: var(--button-text);
+  border-color: var(--secondary-color);
+}
+
+/* Estilo del tag cuando su radio button está seleccionado */
+.filter-controls input[type="radio"]:checked + .filter-tag {
+  background-color: var(--primary-color);
+  color: var(--button-text);
+  border-color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* --- Blog Grid (Estilo Newspaper/Magazine) --- */
+.blog-grid {
+  display: grid;
+  /* Responsive grid: ajusta columnas automáticamente */
+  /* Mínimo 300px, máximo 1fr (fracción del espacio disponible) */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; /* Espacio entre artículos */
+  margin-bottom: 3rem; /* Espacio antes de los comentarios */
+}
+
+/* --- Estilo de cada Artículo --- */
+.blog-post {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden; /* Para que la imagen no se salga */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+  display: flex; /* Para mejor control interno si es necesario */
+  flex-direction: column; /* Apila imagen y contenido */
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.blog-post img {
+  width: 100%;
+  height: 200px; /* Altura fija para la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio */
+  display: block;
+}
+
+.post-content {
+  padding: 1rem 1.2rem;
+  flex-grow: 1; /* Asegura que el contenido llene el espacio */
+  display: flex;
+  flex-direction: column;
+}
+
+.post-category {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--button-text);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start; /* Alinea a la izquierda */
+  margin-right: 5px; /* Espacio entre tags si hay varios */
+}
+/* Colores específicos para tags (opcional) */
+.tag-nutricion { background-color: #28a745; }
+.tag-entrenamiento { background-color: #dc3545; }
+.tag-bienestar { background-color: #ffc107; color: #333; }
+.tag-recetas { background-color: #17a2b8; }
+
+.post-content h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.post-meta {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.post-content p { /* Estilo del extracto */
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Empuja el botón "Leer Más" hacia abajo */
+}
+
+.read-more {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: bold;
+  align-self: flex-end; /* Alinea a la derecha */
+  transition: color var(--transition-speed) ease;
+}
+
+.read-more:hover {
+  color: var(--link-hover-color);
+}
+
+/* --- Lógica de Filtrado CSS (Corregida con :has()) --- */
+
+/* Por defecto, todos los posts son visibles */
+.blog-grid .blog-post {
+  display: flex; /* O el display que uses por defecto (flex en este caso) */
+  /* Asegúrate que la animación no interfiera inicialmente */
+  opacity: 1;
+  transform: translateY(0);
+  /* Aplica la animación por defecto */
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Cuando un filtro específico está activo (usando :has() en el contenedor), */
+/* oculta TODOS los posts primero */
+.blog-container:has(#filter-nutricion:checked) .blog-grid .blog-post,
+.blog-container:has(#filter-entrenamiento:checked) .blog-grid .blog-post,
+.blog-container:has(#filter-bienestar:checked) .blog-grid .blog-post,
+.blog-container:has(#filter-recetas:checked) .blog-grid .blog-post {
+  /* Usamos visibility y opacity para mejor manejo de animaciones/transiciones */
+  /* display: none; podría ser más simple si no hay transiciones complejas */
+  visibility: hidden;
+  opacity: 0;
+  height: 0; /* Colapsa el espacio */
+  overflow: hidden; /* Evita contenido residual */
+  margin: 0; /* Quita márgenes */
+  padding: 0; /* Quita padding */
+  border: none; /* Quita borde */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, border 0.3s ease;
+  animation: none; /* Detiene animación al ocultar */
+}
+
+/* Luego, muestra solo los posts que coinciden con el filtro activo */
+/* y reaplica la animación si se desea al mostrar */
+.blog-container:has(#filter-nutricion:checked) .blog-grid .blog-post.category-nutricion,
+.blog-container:has(#filter-entrenamiento:checked) .blog-grid .blog-post.category-entrenamiento,
+.blog-container:has(#filter-bienestar:checked) .blog-grid .blog-post.category-bienestar,
+.blog-container:has(#filter-recetas:checked) .blog-grid .blog-post.category-recetas {
+  display: flex; /* Muestra los que coinciden */
+  visibility: visible;
+  opacity: 0; /* Reinicia opacidad para animación */
+  height: auto; /* Restaura altura */
+  /* Restaura estilos originales si fueron modificados al ocultar */
+  margin: initial; /* O el valor original si era específico */
+  padding: initial; /* O el valor original */
+  border: 1px solid var(--card-border); /* Restaura borde */
+  overflow: hidden; /* Restaura overflow original */
+  transition: opacity 0.6s ease-out 0.1s, visibility 0s linear, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, border 0.3s ease; /* Transición para aparecer */
+  animation: fadeIn 0.6s ease-out 0.1s forwards; /* Reaplica animación con ligero delay */
+}
+
+/* No se necesita una regla específica para #filter-all:checked, */
+/* ya que al no coincidir ninguna regla :has() específica, */
+/* se aplica la regla por defecto que muestra todos los posts. */
+
+
+/* --- Sección de Comentarios --- */
+.comments-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.comments-section h3,
+.comment-form h4 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem;
+}
+
+.comment {
+  display: flex;
+  gap: 1rem; /* Espacio entre avatar y contenido */
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--card-border);
+  align-items: flex-start; /* Alinea avatar arriba */
+}
+.comment:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Comentarios anidados (respuesta) */
+.comment.reply {
+    margin-left: 3rem; /* Indentación para respuestas */
+    padding-top: 1rem;
+    border-top: 1px dashed var(--card-border);
+    border-bottom: none; /* Quita doble borde */
+    margin-bottom: 1rem;
+    margin-top: -0.5rem; /* Acerca un poco a comentario padre */
+}
+.replying-to {
+    font-size: 0.8em;
+    color: var(--secondary-color);
+}
+
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Círculo */
+  background-color: var(--secondary-color); /* Color de fondo */
+  flex-shrink: 0; /* Evita que el avatar se encoja */
+  position: relative; /* Para posicionar las iniciales */
+  overflow: hidden; /* Por si acaso */
+}
+
+/* Genera iniciales desde el atributo data-initials usando ::before */
+.comment-avatar::before {
+  content: attr(data-initials); /* Toma el valor del atributo */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--button-text); /* Color del texto del botón (blanco?) */
+  font-weight: bold;
+  font-size: 1.1rem; /* Tamaño de las iniciales */
+  text-transform: uppercase;
+}
+
+.comment-content {
+  flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+.comment-author {
+  font-weight: bold;
+  color: var(--text-color);
+  margin-right: 0.5rem;
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.comment-content p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.reply-link {
+  font-size: 0.85rem;
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+.reply-link:hover {
+  color: var(--link-hover-color);
+}
+
+/* --- Formulario de Comentarios --- */
+.comment-form {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  max-width: 600px; /* Limita ancho del form */
+  margin: 2rem auto 0 auto; /* Centra el form */
+}
+
+.comment-form div {
+  margin-bottom: 1rem;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.comment-form button[type="submit"] {
+  /* Hereda de .button en style.css */
+  display: block; /* Ocupa ancho completo */
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* --- Efecto "Scroll Reveal" (Simulación con Animación de Carga CSS) --- */
+/* NOTA: Esto NO es un verdadero Scroll Reveal. Los elementos se animan */
+/* una vez al cargar la página o al cambiar el filtro. */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Empieza ligeramente abajo */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+  .blog-grid {
+    /* Cambia a 2 columnas o ajusta minmax */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .filter-controls {
+      text-align: left; /* Alinea a la izquierda en móvil */
+  }
+  .filter-label {
+      display: block; /* Etiqueta en línea separada */
+      margin-bottom: 0.5rem;
+  }
+  .filter-tag {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+  }
+
+  .comment.reply {
+      margin-left: 1.5rem; /* Reduce indentación */
+  }
+  .comment-avatar {
+      width: 40px;
+      height: 40px;
+  }
+  .comment-avatar::before {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-grid {
+    /* Una sola columna en pantallas muy pequeñas */
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .comment {
+      flex-direction: column; /* Apila avatar y contenido */
+      align-items: center; /* Centra en modo columna */
+      text-align: center;
+  }
+  .comment-avatar {
+      margin-bottom: 0.5rem;
+  }
+  .comment.reply {
+      margin-left: 1rem;
+  }
+  .comment-form {
+      padding: 1rem;
+  }
+}

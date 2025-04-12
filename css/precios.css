@@ -1,364 +1,315 @@
-:root {
-    --bg-color: #f9f9f9;
-    --bg-color1:#cdcaca;
-    --text-color: #333;
-    --text-color1: #1a1a1a;
-    --header-bg: #111;
-    --card-bg: #fff;
-    --highlight: #ffcc00;
-    --footer-bg: #222;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  
-  header {
-    background-color: var(--header-bg);
-  }
-  
-  .card {
-    background-color: var(--card-bg);
-  }
-  
-  footer {
-    background-color: var(--footer-bg);
-  }
-  
-  nav a:hover,
-  .submenu a:hover {
-    color: var(--highlight);
-  }
+/* --- Estilos específicos para precios.html --- */
 
-  body.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #eee;
-    --text-color1: #000000;
-    --bg-color1:#bdb6b6;
-    --header-bg: #000;
-    --card-bg: #2b2b2b;
-    --highlight: #ffa500;
-    --footer-bg: #111;
-  }
+.precios {
+  padding: 40px 20px; /* Añade padding como en otras secciones si no está en style.css */
+  text-align: center;
+}
 
-  #modo-toggle {
-  margin-left: auto;
-  background: #fff;
-  border: none;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+.precios h2 {
+  margin-bottom: 2rem;
+  color: var(--primary-color); /* Usa variable de style.css */
+}
+
+/* --- Toggle Switch --- */
+.toggle-container {
+  margin-bottom: 2rem;
+  display: flex; /* Para centrar el switch */
+  justify-content: center; /* Centra el switch */
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  background: #ddd; /* Color base claro */
+  border-radius: 20px; /* Más redondeado */
+  padding: 4px;
   cursor: pointer;
-  color: #1a1a1a;
-  transition: background-color 0.3s ease;
+  position: relative;
+  width: 180px; /* Ancho fijo para las opciones */
+  height: 32px; /* Altura fija */
+  box-sizing: border-box;
+  border: 1px solid #ccc; /* Borde sutil */
+  transition: background-color var(--transition-speed) ease;
 }
 
-#modo-toggle:hover {
-  background-color: #ddd;
+body.dark-mode .switch {
+  background: #555; /* Fondo oscuro para el switch */
+  border-color: #777;
 }
 
-body {
-    font-family: sans-serif;
- 
-    margin: 0;
+.switch .slider {
+  background: var(--primary-color); /* Usa color primario */
+  border-radius: 16px; /* Redondeado para encajar */
+  width: calc(50% - 4px); /* Mitad del ancho menos padding */
+  height: calc(100% - 8px); /* Altura completa menos padding */
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.3s ease, background-color var(--transition-speed) ease;
+  z-index: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#toggle:checked + .switch .slider {
+  transform: translateX(calc(100% + 0px)); /* Mueve el slider al otro lado */
+}
+
+.option {
+  flex: 1;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--secondary-color); /* Color secundario por defecto */
+  transition: color 0.3s ease;
+  line-height: 32px; /* Centra verticalmente el texto */
+}
+
+/* Estilo para la opción activa (texto blanco sobre el slider) */
+#toggle:not(:checked) + .switch .option:first-child,
+#toggle:checked + .switch .option:last-child {
+  color: var(--button-text); /* Color del texto del botón (generalmente blanco) */
+}
+
+/* --- Tabla de Precios --- */
+.tabla-precios {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem; /* Espacio entre planes */
+  flex-wrap: wrap;
+  margin-top: 2rem; /* Espacio después del toggle */
+}
+
+.plan {
+  background: var(--card-bg); /* Usa variable de fondo de tarjeta */
+  padding: 1.5rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--card-border); /* Usa variable de borde de tarjeta */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  width: 280px; /* Ancho ligeramente mayor */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative; /* Necesario para badges y tooltips */
+  text-align: center; /* Centra contenido del plan */
+}
+
+.plan h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color); /* Color primario para títulos */
+  font-size: 1.4rem;
+}
+
+.plan ul {
+  list-style: none;
   padding: 0;
-    
-  }
-
-  .precios {
-    text-align: center;
-  }
-  
-  
-  h2 {
-    margin-bottom: 2rem;
-  }
-
-  .planes-container:has(#toggle:checked) .recomendado-mensual::after {
-    content: none;
-  }
-  
-  .planes-container:has(#toggle:checked) .precio.anual {
-    display: block;
-  }
-
-  .planes-container:has(#toggle:checked) .ahorro {
-    display: block;
-  }
-
-  .planes-container:has(#toggle:checked) .recomendado-anual::after {
-    content: "★ Recomendado";
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #4caf50;
-    color: white;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  
-  .toggle-container {
-    margin-bottom: 2rem;
-  }
-  
-  .switch {
-    display: inline-flex;
-    align-items: center;
-    background: #ddd;
-    border-radius: 14px;
-    padding: 0.3rem;
-    cursor: pointer;
-    position: relative;
-    width: 180px;
-    height: 32px;
-    justify-content: space-between;
-    box-sizing: border-box;
-  }
-   body.dark-mode .switch {
-    background: #fff9f9;
-    color:#000
-   }
-  
-  .switch .slider {
-    background: #4caf50;
-    border-radius: 14%;
-    width: 90px;
-    height: 30px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    transition: all 0.3s ease;
-    z-index: 0;
-  }
-  
-  #toggle:checked + .switch .slider {
-    transform: translateX(90px);
-  }
-
-  body.dark-mode #toggle:not(:checked) ~ .switch .option:first-child, /* Mensual activo */
-body.dark-mode #toggle:checked ~ .switch .option:last-child {       /* Anual activo */
-  color: white;
+  text-align: left; /* Alinea items de la lista a la izquierda */
+  margin: 1.5rem 0;
+  color: var(--text-color); /* Color de texto principal */
 }
-  
-  .option {
-    flex: 1;
-    text-align: center;
-    z-index: 1;
-    font-weight: bold;
-  }
-  
-  .tabla-precios {
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
-    flex-wrap: wrap;
-  }
-  
-  .plan {
-    background: #e2dbdb;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 250px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-  }
 
-  body.dark-mode .plan {
-    background: #797676;
-    color: #000000;
-  }
-  
-  .plan:hover {
-    transform: scale(1.03);
-    z-index: 2;
-  }
+.plan li {
+  margin: 0.6rem 0;
+  position: relative; /* Para tooltips */
+  padding-left: 1.2rem; /* Espacio para un posible icono */
+  font-size: 0.95rem;
+}
 
-  .plan:hover .ahorro {
-    box-shadow:
-      0 4px 8px rgba(220, 20, 60, 0.4),
-      0 8px 24px rgba(220, 20, 60, 0.6),
-      0 8px 24px rgba(220, 20, 60, 0.6),
-      0 16px 56px rgba(220, 20, 60, 0.8);
-    transform: scale(1.05) translate(-50%, -50%);
-  }
-  
+/* Icono de check (opcional, puedes añadirlo con ::before) */
+.plan li::before {
+  content: '✓'; /* O un icono SVG/FontAwesome */
+  position: absolute;
+  left: 0;
+  color: #4caf50; /* Verde check */
+  font-weight: bold;
+}
+body.dark-mode .plan li::before {
+    color: #81c784; /* Verde más claro en modo oscuro */
+}
 
-  .plan h3 {
-    margin-top: 0;
-  }
 
-  .plan.basico button {
-    background: #607d8b; /* gris azulado */
-  }
-  
-  .plan.basico button:hover {
-    background: #546e7a;
-  }
+.plan button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  color: white; /* Texto siempre blanco para botones de color */
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 80%; /* Ancho del botón */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
 
-  .plan.basico:hover {
-    background: #eceff1; /* versión clara del gris azulado */
-    border: 2px solid #455a64; /* versión más intensa */
-    box-shadow: 
-    0 4px 8px rgba(69, 90, 100, 0.4),
-    0 8px 24px rgba(69, 90, 100, 0.6),
-    0 16px 56px rgba(69, 90, 100, 0.8);
-  }
-  
-  .plan.intermedio button {
-    background: #4caf50; /* verde */
-  }
-  
-  .plan.intermedio button:hover {
-    background: #388e3c;
-  }
+/* --- Precios y Ahorro --- */
+.precio {
+  font-size: 1.8rem; /* Tamaño grande para el precio */
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+  color: var(--text-color); /* Color de texto principal */
+}
 
-  .plan.intermedio:hover {
-    background: #e8f5e9; /* verde claro */
-    border: 2px solid #2e7d32; /* verde más oscuro */
-    box-shadow: 
-    0 4px 8px rgba(46, 125, 50, 0.4),
-    0 8px 24px rgba(46, 125, 50, 0.6),
-    0 16px 56px rgba(46, 125, 50, 0.8);
-  }
-  
-  .plan.premium button {
-    background: #9c27b0; /* violeta */
-  }
-  
-  .plan.premium button:hover {
-    background: #7b1fa2;
-  }
+.precio.mensual, .precio.anual {
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
 
-  .plan.premium:hover {
-    background: #f3e5f5; /* violeta claro */
-    border: 2px solid #6a1b9a; /* violeta más intenso */
-    box-shadow:
-  0 4px 8px rgba(106, 27, 154, 0.4),
-  0 8px 24px rgba(106, 27, 154, 0.6),
-  0 16px 56px rgba(106, 27, 154, 0.8);
-  }
+.precio.anual {
+  display: none; /* Oculto por defecto */
+}
 
-  .plan.destacado {
-    border: 2px solid #4caf50;
-    background: #f0fff0; 
-    position: relative;
-  }
-  
-  .plan.mensual::after {
-    content: "★ Recomendado";
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #4caf50;
-    color: white;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
+.ahorro {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  top: 10px; /* Ajusta posición */
+  left: 50%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 15px; /* Más redondeado */
+  z-index: 3; /* Encima del contenido del plan */
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-  .recomendado-mensual::after {
-    content: "★ Recomendado";
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #4caf50;
-    color: white;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  
-  .precio {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    font-weight: bold;
-  }
-  
-  .precio.anual {
-    display: none;
-  }
+/* --- Lógica de cambio Mensual/Anual con :has() --- */
+.planes-container:has(#toggle:checked) .precio.mensual {
+  display: none;
+}
+.planes-container:has(#toggle:checked) .precio.anual {
+  display: block;
+}
+.planes-container:has(#toggle:checked) .ahorro {
+  display: block; /* Muestra el ahorro en modo anual */
+}
 
-  .ahorro {
-    display: none;
-    position: absolute;
-    top:0.1rem;
-    left:2rem;
-    transform: translate(-50%, -50%);
-    background: crimson;
-    color: white;
-    font-weight: bold;
-    padding: 0.4rem 0.3rem;
-    font-size: 0.70rem;
-    border-radius: 6px;
-    z-index: 10;
-    text-align: center;
-    line-height: 1;
-    max-width:80px;
-  }
-  
-  .planes-container:has(#toggle:checked) .precio.mensual {
-    display: none;
-  }
-  .planes-container:has(#toggle:checked) .precio.anual {
-    display: block;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-  }
-  
-  li {
-    margin: 0.5rem 0;
-    position: relative;
-  }
-  
-  button {
-    margin-top: 1rem;
-    padding: 0.6rem 1rem;
-    background: #4caf50;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #45a049;
-  }
-  
-  /* Tooltip */
-  .tooltip {
-    position: relative;
-    cursor: help;
-  }
-  
-  .tooltip-text {
-    position: absolute;
-    bottom: 120%;
-    left: 0;
-    background: black;
-    color: white;
-    padding: 0.4rem;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-  
-  .tooltip:hover .tooltip-text {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* --- Badge Recomendado --- */
+.recomendado-mensual::after,
+.recomendado-anual::after {
+  content: "★ Recomendado";
+  position: absolute;
+  top: -12px; /* Ligeramente más arriba */
+  right: -10px;
+  background: #ff9800; /* Naranja para destacar */
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.recomendado-anual::after {
+    display: none; /* Oculto por defecto */
+}
+
+/* Lógica para mostrar/ocultar badges con :has() */
+.planes-container:has(#toggle:checked) .recomendado-mensual::after {
+  display: none; /* Oculta badge mensual si está en anual */
+}
+.planes-container:has(#toggle:checked) .recomendado-anual::after {
+  display: block; /* Muestra badge anual si está en anual */
+}
+
+
+/* --- Efectos Hover y Colores Específicos --- */
+.plan:hover {
+  transform: translateY(-8px) scale(1.02); /* Levanta y escala un poco */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  z-index: 2; /* Asegura que esté por encima de otros planes al hacer hover */
+}
+
+/* Colores específicos y hover para cada plan */
+/* Básico */
+.plan.basico button { background: #74e2ab; } /* Gris azulado */
+.plan.basico button:hover { background: #74e2ab; opacity: 0.9; }
+.plan.basico:hover { border-color: #74e2ab; }
+
+/* Intermedio */
+.plan.intermedio button { background: #0f0b91; } /* Verde */
+.plan.intermedio button:hover { background: #0f0b91; opacity: 0.9; }
+.plan.intermedio:hover { border-color: #0f0b91; }
+/* El badge recomendado ya tiene su propio estilo */
+
+/* Premium */
+.plan.premium button { background: #b61102; } /* Violeta */
+.plan.premium button:hover { background: #b61102; opacity: 0.9; }
+.plan.premium:hover { border-color: #b61102; }
+
+
+/* --- Tooltips --- */
+.tooltip {
+  /* position: relative; ya está en li */
+  cursor: help;
+  border-bottom: 1px dotted var(--secondary-color); /* Indica que hay tooltip */
+}
+
+.tooltip .tooltip-text { /* Selecciona el span dentro del li con clase tooltip */
+  position: absolute;
+  bottom: 115%; /* Posición encima del elemento */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px); /* Centrado y ligeramente abajo */
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none; /* No interfiere con el cursor */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10; /* Asegura que esté por encima de todo */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Flecha del tooltip (opcional) */
+.tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Abajo del tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Sube a su posición final */
+}
+
+/* --- Ajustes Dark Mode específicos de precios --- */
+body.dark-mode .plan {
+    /* El fondo y borde ya usan variables --card-bg y --card-border */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05); /* Sombra más sutil en oscuro */
+}
+
+body.dark-mode .plan:hover {
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    /* Los border-color específicos del hover se mantienen */
+}
+
+body.dark-mode .tooltip .tooltip-text {
+    background: rgba(230, 230, 230, 0.9); /* Fondo claro para tooltip en dark mode */
+    color: #111; /* Texto oscuro */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .tooltip .tooltip-text::after {
+    border-top-color: rgba(230, 230, 230, 0.9); /* Flecha clara */
+}
+
+body.dark-mode .ahorro {
+    background: #e53935; /* Rojo un poco más brillante */
+    color: #fff;
+}
+
+body.dark-mode .recomendado-mensual::after,
+body.dark-mode .recomendado-anual::after {
+    background: #ffb74d; /* Naranja más claro */
+    color: #111; /* Texto oscuro para contraste */
+}

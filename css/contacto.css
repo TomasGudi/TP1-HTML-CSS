@@ -1,191 +1,249 @@
+/* ============================================= */
+/*          css/contacto.css                   */
+/* Estilos específicos para contacto.html       */
+/* Asume que style.css maneja estilos globales */
+/* ============================================= */
+
+/* --- Variables específicas de contacto (o anulación de globales) --- */
 :root {
-    --bg-color: #f9f9f9;
-    --bg-color1:#cdcaca;
-    --text-color: #333;
-    --text-color1: #1a1a1a;
-    --header-bg: #111;
-    --card-bg: #fff;
-    --highlight: #ffcc00;
-    --footer-bg: #222;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  
-  header {
-    background-color: var(--header-bg);
-  }
-  
-  .card {
-    background-color: var(--card-bg);
-  }
-  
-  footer {
-    background-color: var(--footer-bg);
-  }
-  
-  nav a:hover,
-  .submenu a:hover {
-    color: var(--highlight);
-  }
-
-  body.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #eee;
-    --text-color1: #000000;
-    --bg-color1:#bdb6b6;
-    --header-bg: #000;
-    --card-bg: #2b2b2b;
-    --highlight: #ffa500;
-    --footer-bg: #111;
-  }
-
-  #modo-toggle {
-  margin-left: auto;
-  background: #fff;
-  border: none;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #1a1a1a;
-  transition: background-color 0.3s ease;
+  /* Colores para validación (pueden estar en style.css o definirse aquí) */
+  --success-color: #28a745; /* Verde */
+  --error-color: #dc3545;   /* Rojo */
+  /* Color para el overlay del modal */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.6);
 }
 
-#modo-toggle:hover {
-  background-color: #ddd;
+body.dark-mode {
+  --success-color: #30d65a; /* Verde más brillante */
+  --error-color: #f85a6a;   /* Rojo más brillante */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.8); /* Overlay más oscuro */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  
-   
-  }
-  
-  h2 {
-    text-align: center;
-    padding: 2rem;
-  }
-  
+/* --- Estructura de la sección --- */
+.contacto h2 {
+text-align: center;
+padding: 2rem 0; /* Espaciado vertical */
+margin-bottom: 1rem; /* Espacio antes del formulario */
+color: var(--primary-color); /* Usa color primario de style.css */
+}
+
+/* --- Formulario con Grid --- */
+.form-contacto {
+max-width: 700px; /* Ancho máximo del formulario */
+margin: 0 auto 2rem auto; /* Centrado horizontal, margen inferior */
+background: var(--card-bg); /* Fondo de tarjeta de style.css */
+padding: 2rem; /* Espaciado interno */
+border-radius: 12px; /* Bordes redondeados */
+box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Sombra suave */
+display: grid;
+grid-template-columns: 1fr 1fr; /* Dos columnas iguales por defecto */
+gap: 1.5rem; /* Espacio entre elementos del grid */
+border: 1px solid var(--card-border); /* Borde de tarjeta de style.css */
+transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; /* Transición suave para dark mode */
+}
+
+/* Clase para elementos que ocupan todo el ancho del grid */
+.form-contacto .full {
+grid-column: span 2; /* Ocupa ambas columnas */
+}
+
+/* Estilo de las etiquetas */
+.form-contacto label {
+display: block; /* Asegura que esté en su propia línea */
+margin-bottom: 0.5rem; /* Espacio debajo de la etiqueta */
+font-weight: bold;
+color: var(--text-color); /* Color de texto de style.css */
+font-size: 0.9rem;
+transition: color var(--transition-speed) ease;
+}
+
+/* Estilo base para inputs y textarea */
+.form-contacto input[type="text"],
+.form-contacto input[type="email"],
+.form-contacto input[type="tel"],
+.form-contacto textarea {
+width: 100%; /* Ocupa todo el ancho disponible */
+padding: 0.8rem; /* Padding interno */
+border-radius: 6px; /* Bordes redondeados */
+border: 1px solid var(--card-border); /* Borde inicial */
+background-color: var(--bg-color); /* Fondo del input (puede ser diferente al de la tarjeta) */
+color: var(--text-color); /* Color del texto dentro del input */
+outline: none; /* Quita el borde de foco por defecto del navegador */
+transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+box-sizing: border-box; /* Asegura que padding y borde no aumenten el tamaño total */
+}
+
+/* Estilo para los placeholders */
+.form-contacto input::placeholder,
+.form-contacto textarea::placeholder {
+  color: var(--secondary-color); /* Color secundario para placeholder */
+  opacity: 0.7; /* Ligeramente transparente */
+}
+
+
+/* --- Validación en tiempo real con CSS (:valid/:invalid) --- */
+
+/* Estilo al enfocar un campo */
+.form-contacto input:focus,
+.form-contacto textarea:focus {
+border-color: var(--primary-color); /* Cambia borde a color primario */
+/* Sombra sutil al enfocar (asegúrate de tener --primary-color-rgb o usa un color fijo) */
+box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
+}
+
+/* Estilos para campos INVÁLIDOS (después de interactuar y si no tiene foco) */
+/* :not(:placeholder-shown) evita marcar como inválido antes de escribir algo */
+.form-contacto input:invalid:not(:placeholder-shown):not(:focus),
+.form-contacto textarea:invalid:not(:placeholder-shown):not(:focus) {
+border-color: var(--error-color); /* Borde rojo */
+}
+
+/* Estilos para campos INVÁLIDOS cuando tienen foco */
+.form-contacto input:invalid:focus,
+.form-contacto textarea:invalid:focus {
+ border-color: var(--error-color); /* Mantiene borde rojo */
+ /* Sombra roja al enfocar campo inválido */
+ box-shadow: 0 0 0 3px rgba(var(--error-color-rgb, 220, 53, 69), 0.25);
+}
+
+
+/* Estilos para campos VÁLIDOS (después de interactuar) */
+.form-contacto input:valid:not(:placeholder-shown),
+.form-contacto textarea:valid:not(:placeholder-shown) {
+border-color: var(--success-color); /* Borde verde */
+}
+
+/* Estilos específicos para textarea */
+.form-contacto textarea {
+resize: vertical; /* Permite redimensionar solo verticalmente */
+min-height: 80px; /* Altura mínima inicial */
+}
+
+/* --- Contenedor del Botón de Envío --- */
+.submit-container {
+  text-align: center; /* Centra el botón dentro del contenedor */
+  /* grid-column: span 2; ya está aplicado por la clase .full */
+}
+
+
+/* --- Botón de Envío --- */
+/* Hereda estilos de .button de style.css si es posible, o define aquí */
+.form-contacto button[type="submit"] {
+padding: 0.8rem 1.8rem; /* Padding interno */
+border: none; /* Sin borde */
+background: var(--button-bg); /* Fondo de botón de style.css */
+color: var(--button-text); /* Color de texto de botón de style.css */
+font-size: 1rem;
+font-weight: bold;
+border-radius: 6px;
+cursor: pointer;
+transition: background-color 0.3s ease, opacity 0.3s ease;
+display: inline-block; /* Para que no ocupe todo el ancho si no se desea */
+}
+
+.form-contacto button[type="submit"]:hover {
+opacity: 0.85; /* Efecto hover suave */
+}
+
+/* --- Spinner CSS (Eliminado o sin uso en la versión sin JS) --- */
+/* No se necesita la definición de .spinner ni @keyframes spin */
+
+
+/* --- Modal de Confirmación (usando :target para CSS puro) --- */
+.modal {
+position: fixed; /* Fijo en la pantalla */
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: var(--modal-overlay-bg); /* Fondo semitransparente */
+display: none; /* Oculto por defecto */
+justify-content: center; /* Centra contenido horizontalmente */
+align-items: center; /* Centra contenido verticalmente */
+z-index: 1050; /* Asegura que esté por encima de otros elementos */
+opacity: 0; /* Inicialmente invisible para transición */
+transition: opacity 0.4s ease, visibility 0.4s ease; /* Transición suave */
+visibility: hidden; /* Oculto y no interactuable */
+}
+
+/* Muestra el modal CUANDO su ID coincide con el hash (#) en la URL */
+#confirmationModal:target {
+  display: flex; /* Cambia a flex para mostrar y centrar */
+  opacity: 1; /* Hace visible */
+  visibility: visible; /* Hace interactuable */
+}
+
+/* Contenido del modal */
+.modal-content {
+background: var(--card-bg); /* Fondo de tarjeta */
+color: var(--text-color); /* Color de texto */
+padding: 2rem 2.5rem; /* Padding interno */
+border-radius: 10px; /* Bordes redondeados */
+text-align: center; /* Texto centrado */
+box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra */
+max-width: 450px; /* Ancho máximo */
+width: 90%; /* Ancho en pantallas pequeñas */
+/* Animación opcional al aparecer */
+transform: scale(0.95); /* Ligeramente escalado hacia abajo */
+transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform 0.4s ease;
+}
+
+/* Anima el contenido al mostrar el modal */
+#confirmationModal:target .modal-content {
+  transform: scale(1); /* Escala a tamaño normal */
+}
+
+/* Título del modal */
+.modal-content h3 {
+margin-top: 0;
+margin-bottom: 1rem;
+color: var(--primary-color); /* Color primario */
+}
+
+/* Párrafo del modal */
+.modal-content p {
+margin-bottom: 1.5rem;
+}
+
+/* Estilo para el enlace de cierre del modal */
+/* Usa la clase .button de style.css para la apariencia base */
+.close-modal-link {
+  text-decoration: none; /* Quita subrayado del enlace */
+  display: inline-block; /* Permite aplicar padding y margen correctamente */
+  margin-top: 1rem; /* Espacio sobre el botón/enlace */
+  /* Hereda estilos de .button definido en style.css */
+}
+
+
+/* --- Diseño Responsivo --- */
+@media(max-width: 768px) {
+  /* Ajusta el ancho máximo en pantallas medianas */
   .form-contacto {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+      max-width: 90%;
+      padding: 1.5rem; /* Reduce padding */
   }
-  body.dark-mode .form-contacto {
-    background-color: var(--bg-color1);
-    color: var(--text-color1);
-  }
-  
-  form .full {
-    grid-column: span 2;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-weight: bold;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 0.7rem;
-    border-radius: 8px;
-    border: 2px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s;
-  }
+}
 
-  
-textarea {
-    resize: none;
-    overflow: hidden; 
-  }
-  
-  input:valid, textarea:valid {
-    border-color: limegreen;
-  }
-  
-  input:invalid, textarea:invalid {
-    border-color: crimson;
-  }
-  
-  button {
-    grid-column: span 2;
-    padding: 0.8rem;
-    border: none;
-    background: royalblue;
-    color: white;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  /* --- SPINNER --- */
-  .spinner {
-    border: 4px solid #eee;
-    border-top: 4px solid royalblue;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1s linear infinite;
-    display: none;
-    margin: auto;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* --- MODAL --- */
-  .modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    animation: fadeIn 0.5s ease;
-  }
+@media(max-width: 600px) {
+/* Cambia a una sola columna en pantallas pequeñas */
+.form-contacto {
+  grid-template-columns: 1fr;
+  gap: 1rem; /* Reduce espacio entre elementos */
+  padding: 1.5rem;
+}
 
-  body.dark-mode .modal-content {
-    background-color: var(--bg-color1);
-    color: var(--text-color1);
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  
-  /* Responsive */
-  @media(max-width: 600px) {
-    form {
-      grid-template-columns: 1fr;
-    }
-  
-    button {
-      grid-column: span 1;
-    }
-  }
+/* Asegura que los elementos .full ocupen la única columna */
+.form-contacto .full {
+  grid-column: span 1;
+}
+
+/* Reduce padding del modal en pantallas pequeñas */
+.modal-content {
+    padding: 1.5rem;
+}
+}
+
+/* --- Ajustes Dark Mode específicos (si son necesarios más allá de variables) --- */
+/* En este caso, las variables de style.css y las definidas aquí deberían ser suficientes */
+/* body.dark-mode .modal-content { ... } */
+/* body.dark-mode .form-contacto { ... } */

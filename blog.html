@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | PowerFit</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/blog.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="mega-menu">
+      <h1 class="logo">PowerFit</h1>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">☰</label>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clases.html">Clases</a></li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+      <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+
+  <main class="blog-container">
+    <h2>Nuestro Blog de Fitness</h2>
+
+    <!-- Filter Controls (CSS Only) -->
+    <div class="filter-controls">
+      <span class="filter-label">Filtrar por:</span>
+      <!-- Radio buttons are hidden, labels are styled -->
+      <input type="radio" name="filter-category" id="filter-all" checked>
+      <label for="filter-all" class="filter-tag">Todos</label>
+
+      <input type="radio" name="filter-category" id="filter-nutricion">
+      <label for="filter-nutricion" class="filter-tag">Nutrición</label>
+
+      <input type="radio" name="filter-category" id="filter-entrenamiento">
+      <label for="filter-entrenamiento" class="filter-tag">Entrenamiento</label>
+
+      <input type="radio" name="filter-category" id="filter-bienestar">
+      <label for="filter-bienestar" class="filter-tag">Bienestar</label>
+
+      <input type="radio" name="filter-category" id="filter-recetas">
+      <label for="filter-recetas" class="filter-tag">Recetas</label>
+    </div>
+
+    <!-- Blog Grid Container -->
+    <!-- The filtering CSS will target this container's children -->
+    <div class="blog-grid">
+
+      <!-- Example Blog Post 1 -->
+      <article class="blog-post category-entrenamiento fade-in-load">
+        <img src="assets/blog1.jpg" alt="Persona levantando pesas">
+        <div class="post-content">
+          <span class="post-category tag-entrenamiento">Entrenamiento</span>
+          <h3>5 Errores Comunes al Levantar Pesas</h3>
+          <p class="post-meta">Por Ana López | 15 Julio, 2024</p>
+          <p>Evita estas fallas comunes para maximizar tus ganancias musculares y prevenir lesiones...</p>
+          <a href="#" class="read-more">Leer Más &rarr;</a>
+        </div>
+      </article>
+
+      <!-- Example Blog Post 2 -->
+      <article class="blog-post category-nutricion category-recetas fade-in-load">
+         <img src="assets/2blog.jpg" alt="Batido de proteinas verde">
+         <div class="post-content">
+          <span class="post-category tag-nutricion">Nutrición</span>
+          <span class="post-category tag-recetas">Recetas</span>
+          <h3>Batido Post-Entreno: Recarga Energética</h3>
+          <p class="post-meta">Por Carlos Mendez | 12 Julio, 2024</p>
+          <p>Una receta deliciosa y nutritiva para recuperarte después de tu sesión de ejercicio...</p>
+          <a href="#" class="read-more">Leer Más &rarr;</a>
+        </div>
+      </article>
+
+      <!-- Example Blog Post 3 -->
+      <article class="blog-post category-bienestar fade-in-load">
+        <img src="assets/3blog.webp" alt="Persona meditando al amanecer">
+        <div class="post-content">
+          <span class="post-category tag-bienestar">Bienestar</span>
+          <h3>Mindfulness y Ejercicio: Una Combinación Poderosa</h3>
+          <p class="post-meta">Por Sofia Rossi | 10 Julio, 2024</p>
+          <p>Descubre cómo la atención plena puede mejorar tu rendimiento y disfrute del fitness...</p>
+          <a href="#" class="read-more">Leer Más &rarr;</a>
+        </div>
+      </article>
+
+       <!-- Example Blog Post 4 -->
+       <article class="blog-post category-entrenamiento fade-in-load">
+        <img src="assets/4blog.jpg" alt="Corredor en pista">
+        <div class="post-content">
+          <span class="post-category tag-entrenamiento">Entrenamiento</span>
+          <h3>Cómo Mejorar tu Resistencia Cardiovascular</h3>
+          <p class="post-meta">Por Juan Perez | 8 Julio, 2024</p>
+          <p>Consejos prácticos y rutinas para aumentar tu capacidad aeróbica y correr más lejos...</p>
+          <a href="#" class="read-more">Leer Más &rarr;</a>
+        </div>
+      </article>
+
+       <!-- Example Blog Post 5 -->
+       <article class="blog-post category-nutricion fade-in-load">
+        <img src="assets/blog5.jpg" alt="Plato de comida saludable">
+        <div class="post-content">
+          <span class="post-category tag-nutricion">Nutrición</span>
+          <h3>La Importancia de las Proteínas en tu Dieta Fitness</h3>
+          <p class="post-meta">Por Laura Garcia | 5 Julio, 2024</p>
+          <p>Entiende por qué las proteínas son esenciales para la construcción muscular y la recuperación...</p>
+          <a href="#" class="read-more">Leer Más &rarr;</a>
+        </div>
+      </article>
+
+      <!-- Add more articles following the same structure and adding category-* classes -->
+
+    </div> <!-- End of blog-grid -->
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <h3>Comentarios Recientes</h3>
+
+      <div class="comment-list">
+        <!-- Example Comment 1 -->
+        <div class="comment fade-in-load">
+          <div class="comment-avatar" data-initials="JD"></div>
+          <div class="comment-content">
+            <strong class="comment-author">Juan Diaz</strong>
+            <time class="comment-time" datetime="2024-07-15T10:30:00">Hace 2 horas</time>
+            <p>¡Excelente artículo sobre los errores al levantar pesas! Justo lo que necesitaba leer.</p>
+            <a href="#" class="reply-link">Responder</a>
+          </div>
+        </div>
+
+        <!-- Example Comment 2 -->
+        <div class="comment fade-in-load">
+          <div class="comment-avatar" data-initials="MP"></div>
+          <div class="comment-content">
+            <strong class="comment-author">Maria Peña</strong>
+            <time class="comment-time" datetime="2024-07-14T18:15:00">Ayer</time>
+            <p>Probé el batido post-entreno y está delicioso. ¡Gracias por la receta!</p>
+            <a href="#" class="reply-link">Responder</a>
+          </div>
+        </div>
+
+         <!-- Example Comment 3 (Nested Reply - Basic Structure) -->
+         <div class="comment reply fade-in-load">
+            <div class="comment-avatar" data-initials="AL"></div>
+            <div class="comment-content">
+              <strong class="comment-author">Ana López</strong> <span class="replying-to">respondiendo a Maria Peña</span>
+              <time class="comment-time" datetime="2024-07-15T09:00:00">Hace 4 horas</time>
+              <p>¡Me alegro que te haya gustado, María!</p>
+              <a href="#" class="reply-link">Responder</a>
+            </div>
+          </div>
+
+      </div>
+
+      <!-- Comment Form (Basic Structure) -->
+      <form class="comment-form">
+        <h4>Deja tu Comentario</h4>
+        <div>
+          <label for="comment-name">Nombre:</label>
+          <input type="text" id="comment-name" required>
+        </div>
+        <div>
+          <label for="comment-text">Comentario:</label>
+          <textarea id="comment-text" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="button">Enviar Comentario</button>
+      </form>
+
+    </section> <!-- End of comments-section -->
+
+  </main>
+
+  <footer>
+    <div class="newsletter">
+      <h3>Suscribite al newsletter</h3>
+      <form>
+        <input type="email" placeholder="Tu email" required>
+        <button type="button" class="button">Suscribirme</button>
+      </form>
+    </div>
+
+    <div class="redes">
+        <a href="#"><img src="assets/Facebook_logo_(square).png" alt="Facebook"></a>
+        <a href="#"><img src="assets/logo-instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="assets/Logo_of_Twitter.png" alt="Twitter"></a>
+      </div>
+
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322839!2d106.8195613507848!3d-6.194741395509438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356280477!2sJakarta!5e0!3m2!1sen!2sid!4v1620385288815!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </footer>
+
+  <script src="js/dark-mode.js" defer></script>
+
+</body>
+</html>

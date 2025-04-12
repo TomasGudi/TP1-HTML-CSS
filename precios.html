@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gimnasio PowerFit</title>
+  <title>Precios | PowerFit</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/precios.css" />
 </head>
@@ -20,84 +20,117 @@
         <li><a href="entrenadores.html">Entrenadores</a></li>
         <li><a href="precios.html">Precios</a></li>
         <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="blog.html">Blog</a></li>
       </ul>
+      <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
     </nav>
   </header>
 
   <section class="precios">
     <h2>Considera nuestros Planes</h2>
 
-    <div class="tabla-precios">
-      <div class="plan basico">
-        <h3>Básico</h3>
-        <p class="precio">AR$ 5000</p>
-        <ul>
-          <li class="tooltip">Acceso a sala de musculación
-            <span class="tooltip-text">Incluye pesas, máquinas y zona de cardio</span>
-          </li>
-          <li> 3 días por semana</li>
-          <li>1 clase semanal</li>
-          <li>Sin entrenador</li>
-        </ul>
-        <button>Elegir</button>
-      </div>
-  
-      <div class="plan intermedio">
-        <h3>Intermedio</h3>
-        <p class="precio">AR$ 8500</p>
-        <ul>
-          <li class="tooltip">Acceso total
-            <span class="tooltip-text">Musculación, cardio y salón de clases</span>
-          </li>
-          <li> 5 días por semana</li>
-          <li>3 clases semanales</li>
-          <li class="tooltip">Entrenador compartido
-            <span class="tooltip-text">Sesiones guiadas grupales</span>
-          </li>
-        </ul>
-        <button>Elegir</button>
-      </div>
-  
-      <div class="plan premium">
-        <h3>Premium</h3>
-        <p class="precio">AR$ 12000</p>
-        <ul>
-            <li class="tooltip">Acceso ilimitado
-                <span class="tooltip-text">Acceso libre a todas las areas </span>
-            </li>
-            <li> Pase libre todo el mes</li>
-            <li class="tooltip">Clases ilimitadas
-                <span class="tooltip-text">Acceso libre a todas las clases </span>
-            </li>
-          <li class="tooltip">Entrenador personal
-            <span class="tooltip-text">Puedes elegir al entrenador que más se ajuste a tus necesidades </span>
-          </li>
-        </ul>
-        <button>Elegir</button>
-      </div>
+    <!-- Toggle Switch HTML -->
+    <div class="toggle-container">
+      <input type="checkbox" id="toggle" style="display: none;">
+      <label for="toggle" class="switch">
+        <span class="option">Mensual</span>
+        <span class="option">Anual</span>
+        <div class="slider"></div>
+      </label>
     </div>
-    </div>
-    </section>
+
+    <!-- Container for Plans (needed for :has selector) -->
+    <div class="planes-container">
+      <div class="tabla-precios">
+
+        <div class="plan basico">
+          <h3>Básico</h3>
+          <!-- Savings Badge (initially hidden by CSS) -->
+          <span class="ahorro">Ahorra 2 meses</span>
+          <!-- Monthly Price -->
+          <p class="precio mensual">AR$ 3900</p>
+          <!-- Annual Price (initially hidden by CSS) -->
+          <p class="precio anual">AR$ 45000</p>
+          <ul>
+            <li class="tooltip">Acceso a sala de musculación
+              <span class="tooltip-text">Incluye pesas, máquinas y zona de cardio</span>
+            </li>
+            <li> 3 días por semana</li>
+            <li>1 clase semanal</li>
+            <li>Sin entrenador</li>
+          </ul>
+          <button>Elegir</button>
+        </div>
+
+        <!-- Added recomendado classes -->
+        <div class="plan intermedio recomendado-mensual recomendado-anual">
+          <h3>Intermedio</h3>
+           <!-- Savings Badge (initially hidden by CSS) -->
+           <span class="ahorro">Ahorra AR$ 17000</span>
+           <!-- Monthly Price -->
+          <p class="precio mensual">AR$ 6500</p>
+           <!-- Annual Price (initially hidden by CSS) -->
+          <p class="precio anual">AR$ 55000</p>
+          <ul>
+            <li class="tooltip">Acceso total
+              <span class="tooltip-text">Musculación, cardio y salón de clases</span>
+            </li>
+            <li> 5 días por semana</li>
+            <li>3 clases semanales</li>
+            <li class="tooltip">Entrenador compartido
+              <span class="tooltip-text">Sesiones guiadas grupales</span>
+            </li>
+          </ul>
+          <button>Elegir</button>
+        </div>
+
+        <div class="plan premium">
+          <h3>Premium</h3>
+           <!-- Savings Badge (initially hidden by CSS) -->
+           <span class="ahorro">Ahorra AR$ 24000</span>
+           <!-- Monthly Price -->
+          <p class="precio mensual">AR$ 14000</p>
+           <!-- Annual Price (initially hidden by CSS) -->
+          <p class="precio anual">AR$ 100000</p>
+          <ul>
+              <li class="tooltip">Acceso ilimitado
+                  <span class="tooltip-text">Acceso libre a todas las areas</span>
+              </li>
+              <li> Pase libre todo el mes</li>
+              <li class="tooltip">Clases ilimitadas
+                  <span class="tooltip-text">Acceso libre a todas las clases</span>
+              </li>
+            <li class="tooltip">Entrenador personal
+              <span class="tooltip-text">Puedes elegir al entrenador que más se ajuste a tus necesidades</span>
+            </li>
+          </ul>
+          <button>Elegir</button>
+        </div>
+      </div>
+    </div> <!-- End of planes-container -->
+  </section>
 
   <footer>
-    <div class="newsletter">
-      <h3>Suscribite al newsletter</h3>
-      <form  >
-        <input type="email" placeholder="Tu email" required>
-        <button type="button" class="button">Suscribirme</button>
-      </form>
-    </div>
-
-    <div class="redes">
-        <a href="#"><img src="assets/icons/Facebook.svg" alt="Facebook"></a>
-        <a href="#"><img src="assets/icons/Instagram.svg" alt="Instagram"></a>
-        <a href="#"><img src="assets/icons/Twitter.svg" alt="Twitter"></a>
+      <div class="newsletter">
+        <h3>Suscribite al newsletter</h3>
+        <form>
+          <input type="email" placeholder="Tu email" required>
+          <button type="button" class="button">Suscribirme</button>
+        </form>
       </div>
 
-    <div class="mapa">
-      <iframe src="https://www.google.com/maps/embed?..."style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </footer>
+      <div class="redes">
+          <a href="#"><img src="assets/Facebook_logo_(square).png" alt="Facebook"></a>
+          <a href="#"><img src="assets/logo-instagram.png" alt="Instagram"></a>
+          <a href="#"><img src="assets/Logo_of_Twitter.png" alt="Twitter"></a>
+        </div>
+
+      <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322839!2d106.8195613507848!3d-6.194741395509438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356280477!2sJakarta!5e0!3m2!1sen!2sid!4v1620385288815!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </footer>
+
+    <script src="js/dark-mode.js" defer></script>
 
 </body>
 </html>
